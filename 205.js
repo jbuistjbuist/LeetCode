@@ -11,17 +11,22 @@
  * @param {string} t
  * @return {boolean}
  */
-var isIsomorphic = function(s, t) {
+var isIsomorphic = function (s, t) {
   const patterns = {};
   for (let i = 0; i < s.length; i++) {
-      if (Object.entries(patterns).find(el => el[0] === s[i] && el[1] !== t[i] || el[1] === t[i] && el[0] !== s[i])) {
-          return false;
-      }
-      patterns[s[i]] = t[i];
+    if (
+      Object.entries(patterns).find(
+        (el) =>
+          (el[0] === s[i] && el[1] !== t[i]) ||
+          (el[1] === t[i] && el[0] !== s[i])
+      )
+    ) {
+      return false;
+    }
+    patterns[s[i]] = t[i];
   }
   return true;
 };
-
 
 //second solution (faster than most)
 
@@ -30,17 +35,16 @@ var isIsomorphic = function(s, t) {
  * @param {string} t
  * @return {boolean}
  */
-var isIsomorphic = function(s, t) {
+var isIsomorphic = function (s, t) {
   const sObj = {};
   const tObj = {};
 
   for (let i = 0; i < s.length; i++) {
-      if (sObj[s[i]] && sObj[s[i]] !== t[i]) return false;
-      if (tObj[t[i]] && tObj[t[i]] !== s[i]) return false;
+    if (sObj[s[i]] && sObj[s[i]] !== t[i]) return false;
+    if (tObj[t[i]] && tObj[t[i]] !== s[i]) return false;
 
-      
-     sObj[s[i]] = t[i];
-     tObj[t[i]] = s[i]
+    sObj[s[i]] = t[i];
+    tObj[t[i]] = s[i];
   }
 
   return true;
