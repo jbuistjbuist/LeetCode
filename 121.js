@@ -36,3 +36,20 @@ var maxProfit = function (prices) {
 };
 
 
+var maxProfit = function (prices) {
+  let l = 0;
+  let r = 1;
+  let maxProfit = 0;
+
+  while(r < prices.length) {
+      let profit = prices[r] - prices[l]
+      if (profit >= 0) {
+          maxProfit = Math.max(profit, maxProfit)
+      } else {
+          l = r
+      }
+      r++
+  }
+
+  return maxProfit
+};
